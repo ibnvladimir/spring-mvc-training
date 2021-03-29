@@ -8,7 +8,7 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
-    private  int ID = 0;
+    private static int ID = 0;
     private List<Person> people;
 
     {
@@ -30,5 +30,10 @@ public class PersonDAO {
                      .filter(people -> people.getId() == id)
                      .findAny()
                      .orElse(null);
+    }
+
+    public void save(Person person) {
+        person.setId(++ID);
+        people.add(person);
     }
 }
