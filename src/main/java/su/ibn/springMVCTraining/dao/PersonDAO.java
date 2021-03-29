@@ -1,0 +1,34 @@
+package su.ibn.springMVCTraining.dao;
+
+import org.springframework.stereotype.Component;
+import su.ibn.springMVCTraining.models.Person;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
+public class PersonDAO {
+    private  int ID = 0;
+    private List<Person> people;
+
+    {
+        people = new ArrayList<>();
+
+        people.add(new Person(++ID, "Tom"));
+        people.add(new Person(++ID, "Sara"));
+        people.add(new Person(++ID, "Umy"));
+        people.add(new Person(++ID, "Ban"));
+        people.add(new Person(++ID, "Iris"));
+    }
+
+    public List<Person> getPeople() {
+        return people;
+    }
+
+    public Person getPerson(int id) {
+        return people.stream()
+                     .filter(people -> people.getId() == id)
+                     .findAny()
+                     .orElse(null);
+    }
+}
